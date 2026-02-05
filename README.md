@@ -10,9 +10,10 @@ Lagd under IFI Game Jam 2026
 
 Gruppemedlemmer:
 
-- 
-- 
-- 
+- Alliana
+- Kevin
+- Mei
+- Maria
 
 ## Controls
 
