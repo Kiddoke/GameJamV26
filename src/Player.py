@@ -1,7 +1,6 @@
 import pygame
 
 from .assets import *
-from .settings import *
 
 
 
@@ -11,8 +10,6 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.x = 50
         self.y = 50
-        self.width = 40
-        self.height = 50
         self.size = (60, 90)
         self.direction = "down"
         self.sprites = {
@@ -24,16 +21,13 @@ class Player(pygame.sprite.Sprite):
 
         self.image = self.sprites[self.direction]
         self.rect = self.sprites[self.direction].get_rect()
+        self.rect.x = 50
+        self.rect.y = 50
 
 
-    def update(self, keys, vel):
+    def update(self, keys, vel, colliders):
 
-        if keys[pygame.K_w]:
-            self.rect.y -= vel
-            self.direction = "up"
-        if keys[pygame.K_s]:
-            self.rect.y += vel
-            self.direction = "down"
+        old_x, old_y = self.rect.topleft
 
         if keys[pygame.K_d]:
             self.rect.x += vel
@@ -42,5 +36,31 @@ class Player(pygame.sprite.Sprite):
             self.rect.x -= vel
             self.direction = "left"
 
+        hits = pygame.sprite.spritecollide(self, colliders, False)
+        for hit in hits:
+            if self.rect.colliderect(hit.rect):
+                if self.rect.centerx > hit.rect.centerx:
+                    self.rect.left = hit.rect.right
+                else: 
+                    self.rect.right = hit.rect.left
+
+        if keys[pygame.K_w]:
+            self.rect.y -= vel
+            self.direction = "up"
+        if keys[pygame.K_s]:
+            self.rect.y += vel
+            self.direction = "down"
+
+        hits = pygame.sprite.spritecollide(self, colliders, False)
+        for hit in hits:
+            if self.rect.colliderect(hit.rect):
+                if self.rect.centery > hit.rect.centery:
+                    self.rect.top = hit.rect.bottom
+                else: 
+                    self.rect.bottom = hit.rect.top
+
+
         self.image = self.sprites[self.direction]
+
+
         print(self.rect)

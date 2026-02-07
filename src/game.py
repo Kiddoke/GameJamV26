@@ -5,6 +5,7 @@ import os
 
 from .settings import *
 from .Player import Player
+from .npc import NPC
 
 
 pygame.init()
@@ -20,8 +21,14 @@ def run():
 
     #objects
     all_sprites = pygame.sprite.Group()
+    all_other_sprites = pygame.sprite.Group()
     p1 = Player()
+    npc1 = NPC()
     all_sprites.add(p1)
+    all_sprites.add(npc1)
+    all_other_sprites.add(npc1)
+
+
 
     def draw_frame():
         screen.fill(WHITE)
@@ -38,7 +45,7 @@ def run():
                 running = False
         
         keys = pygame.key.get_pressed()
-        p1.update(keys, vel)
+        p1.update(keys, vel, all_other_sprites)
 
 
         draw_frame()
