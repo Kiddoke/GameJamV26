@@ -13,7 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.y = 50
         self.width = 40
         self.height = 50
-        self.size = (60, 80)
+        self.size = (60, 90)
         self.direction = "down"
         self.sprites = {
             "up" : pygame.transform.scale(PLAYER_SPRITE_BACK_UP, self.size),
@@ -43,3 +43,4 @@ class Player(pygame.sprite.Sprite):
             self.direction = "left"
 
         self.image = self.sprites[self.direction]
+        print(self.rect)
