@@ -19,13 +19,15 @@ def run():
 
 
     #objects
+    all_sprites = pygame.sprite.Group()
     p1 = Player()
-
+    all_sprites.add(p1)
 
     def draw_frame():
         screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
-        p1.draw(screen)
+        all_sprites.draw(screen)
+
 
     running = True
     while running:
@@ -36,18 +38,7 @@ def run():
                 running = False
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_w]:
-            p1.y -= vel
-            p1.direction = "up"
-        if keys[pygame.K_a]:
-            p1.x -= vel
-            p1.direction = "left"
-        if keys[pygame.K_s]:
-            p1.y += vel
-            p1.direction = "down"
-        if keys[pygame.K_d]:
-            p1.x += vel
-            p1.direction = "right"
+        p1.update(keys, vel)
 
 
         draw_frame()
