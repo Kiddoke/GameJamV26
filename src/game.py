@@ -8,7 +8,7 @@ from .Player import Player
 
 
 pygame.init()
-vel = 5
+vel = 3.5
 
 
 def run():
@@ -23,7 +23,7 @@ def run():
 
 
     def draw_frame():
-        screen.fill((30, 30, 30))
+        screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
         p1.draw(screen)
 
@@ -38,12 +38,16 @@ def run():
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
             p1.y -= vel
+            p1.direction = "up"
         if keys[pygame.K_a]:
             p1.x -= vel
+            p1.direction = "left"
         if keys[pygame.K_s]:
             p1.y += vel
+            p1.direction = "down"
         if keys[pygame.K_d]:
             p1.x += vel
+            p1.direction = "right"
 
 
         draw_frame()
