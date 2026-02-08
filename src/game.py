@@ -8,6 +8,7 @@ from .assets import *
 from .Player import Player
 from .npc import NPC
 from .level import create_level_one
+from .bottleCounter import BottleCounter
 
 
 pygame.init()
@@ -31,7 +32,7 @@ def run():
     all_sprites.add(p1)
     all_sprites.add(npc1)
     all_other_sprites.add(npc1)
-
+    bottleCounter = BottleCounter(BOTTLE, CAN)
 
 
     def draw_frame():
@@ -64,7 +65,10 @@ def run():
 
         for i in range(3):
             screen.blit(FULL_HEART, (x + i * (HEART_SIZE[0] + 5), y))
-
+    
+    # counter for pant
+    def draw_bottleCounter():
+        bottleCounter.draw(screen)
 
     running = True
     while running:
@@ -88,8 +92,9 @@ def run():
         pygame.draw.rect(screen, (0,0,0), (0,0, WIDTH, TOP_BAR_HEIGHT))
         pygame.draw.rect(screen, (0,0,0), (0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT))
 
-        # healthbar
+        # healthbar + bottle counter
         draw_health()
+        draw_bottleCounter()
 
         draw_frame()
         pygame.display.flip()
