@@ -16,7 +16,7 @@ from .healthbar import Healthbar
 
 pygame.init()
 vel = 3.5
-screen = pygame.display.set_mode((WIDTH, HEIGHT)) # needed here by assets.py What is this??
+screen = pygame.display.set_mode(OPTIONS["resolution"]) # needed here by assets.py What is this??
 
 def main():
 
@@ -30,13 +30,40 @@ def main():
         menu.mainloop(screen)
 
 def create_menu(screen):
-    menu = pygame_menu.Menu('IFI SPILL', WIDTH, HEIGHT, theme=pygame_menu.themes.THEME_BLUE)
+    menu = pygame_menu.Menu('IFI SPILL', OPTIONS["resolution"][0], OPTIONS["resolution"][1], theme=pygame_menu.themes.THEME_BLUE)
 
     menu.add.button('Start', start_game)
+    menu.add.button('Settings', lambda: open_settings(menu))
     menu.add.button('Quit', pygame_menu.events.EXIT)
 
     return menu
 
+def open_settings(menu):
+    settings_menu = pygame_menu.Menu(
+        'Settings',
+        OPTIONS["resolution"][0],
+        OPTIONS["resolution"][1],
+        theme=pygame_menu.themes.THEME_BLUE
+    )
+
+    def set_resolution(value, resolution):
+        OPTIONS["resolution"] = resolution
+        pygame.display.set_mode(resolution)
+
+
+    settings_menu.add.selector(
+        'Resolution',
+        [
+            ('800 x 600', (800, 600)),
+            ('1024 x 768', (1024, 768)),
+            ('1280 x 720', (1280, 720)),
+            ('1920 x 1080', (1980, 720))
+        ],
+        onchange=set_resolution
+    )
+    
+    settings_menu.add.button('Back', menu)
+    settings_menu.mainloop(screen)
 
 def start_game():
     run()
@@ -52,12 +79,12 @@ def run():
     #objects
     p1 = Player()
     npc1 = NPC(OJD_SPRITE_FRONT_LEFT)
-    top_bar = BlackBar(0,0, WIDTH, TOP_BAR_HEIGHT)
-    bottom_bar = BlackBar(0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
+    top_bar = BlackBar(0,0, OPTIONS["resolution"][0], TOP_BAR_HEIGHT)
+    bottom_bar = BlackBar(0, OPTIONS["resolution"][1] - BOTTOM_BAR_HEIGHT, OPTIONS["resolution"][0], BOTTOM_BAR_HEIGHT)
 
     wall_thickness = 1
-    left_wall = Wall(0,0, wall_thickness, HEIGHT)
-    right_wall = Wall(WIDTH - wall_thickness, 0, wall_thickness, HEIGHT)
+    left_wall = Wall(0,0, wall_thickness, OPTIONS["resolution"][1])
+    right_wall = Wall(OPTIONS["resolution"][0] - wall_thickness, 0, wall_thickness, OPTIONS["resolution"][1])
 
     all_sprites = pygame.sprite.Group()
     all_other_sprites = pygame.sprite.Group()
@@ -74,7 +101,7 @@ def run():
 
     def draw_frame():
         #screen.fill(WHITE)
-        pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
+        pygame.draw.rect(screen, WHITE, (0, 690, OPTIONS["resolution"][0], 30))
         all_sprites.draw(screen)
     
     def draw_background():
