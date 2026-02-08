@@ -4,12 +4,12 @@ class BottleCounter:
     def __init__(self, bottleImage, canImage):
         self.count = 0
         self.font = pygame.font.Font(None, 30)
-        self.bottle = bottleImage
-        self.can = canImage
-
         self.x = 710
         self.y = 60
         self.hintCost = 3
+        
+        self.bottle = bottleImage
+        self.can = canImage
 
     def addBottle(self):
         self.count += 1
