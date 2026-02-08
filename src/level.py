@@ -18,16 +18,16 @@ def create_level_one():
     cr3 = Classroom(80, 185, CLASSROOM_DOOR1, "scheme", popup)
 
     # trashcans
-    t1 = Trashcan(360, 215)
+    t = Trashcan(360, 220)
     t2 = Trashcan(600, 430)
 
     hall.add_door(cr1)
     hall.add_door(cr2)
     hall.add_door(cr3)
 
-    hall.add_trashcan(t1)
+    hall.add_trashcan(t)
     hall.add_trashcan(t2)
-    
+
     # pant
     pant_y = 187
     b = Pant(375, pant_y, BOTTLE)
