@@ -36,11 +36,12 @@ class Hall:
         #     trashcan.draw(screen)
         
 class BlackBar(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, width, height, offset=0):
         super().__init__()
         self.image = pygame.Surface((width, height))
         self.image.fill((0,0,0)) #RGB
         self.rect = self.image.get_rect(topleft=(x,y))
+        self.rect.height += offset
 
 class Wall(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, alpha=0):

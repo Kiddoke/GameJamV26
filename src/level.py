@@ -29,12 +29,12 @@ def create_level_one():
     hall.add_trashcan(t2)
     
     # pant
-    pant_y = 187
-    b = Pant(375, pant_y, BOTTLE)
-    b2 = Pant(395, pant_y, BOTTLE)
-    c = Pant(420, pant_y, CAN)
+    pant_y = 176
+    b = Pant(375, pant_y, BOTTLE, offset=10)
+    b2 = Pant(395, pant_y, BOTTLE, offset=10)
+    c = Pant(420, pant_y, CAN, offset=10)
 
-    pant_y2 = 400
+    pant_y2 = 390
     b3 = Pant(615, pant_y2, BOTTLE)
     b4 = Pant(640, pant_y2, BOTTLE)
     c2 = Pant(665, pant_y2, CAN)

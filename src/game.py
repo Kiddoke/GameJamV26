@@ -59,7 +59,7 @@ def run():
     #objects
     p1 = Player()
     npc1 = NPC(OJD_SPRITE_FRONT_LEFT)
-    top_bar = BlackBar(0,0, WIDTH, TOP_BAR_HEIGHT)
+    top_bar = BlackBar(0,0, WIDTH, TOP_BAR_HEIGHT, 100)
     bottom_bar = BlackBar(0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
     level_1_trashcans = level.hall.get_Trashcan()
     t1, t2 = level_1_trashcans[0], level_1_trashcans[1]
