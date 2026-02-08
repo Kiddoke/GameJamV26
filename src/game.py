@@ -18,11 +18,13 @@ from .gameover import GameOver
 
 pygame.init()
 vel = 3.5
-screen = pygame.display.set_mode((WIDTH, HEIGHT)) # needed here by assets.py What is this??
+screen = pygame.display.set_mode(
+    (WIDTH, HEIGHT)
+)  # needed here by assets.py What is this??
+
 
 def main():
 
-    
     pygame.display.set_caption("IFI SPILL")
 
     menu = create_menu(screen)
@@ -31,11 +33,24 @@ def main():
     while title_screen:
         menu.mainloop(screen)
 
-def create_menu(screen):
-    menu = pygame_menu.Menu('IFI SPILL', WIDTH, HEIGHT, theme=pygame_menu.themes.THEME_BLUE)
 
-    menu.add.button('Start', start_game)
-    menu.add.button('Quit', pygame_menu.events.EXIT)
+def create_menu(screen):
+    mytheme = pygame_menu.Theme(
+        background_color=(0, 0, 0, 0),
+        title_background_color=(4, 47, 126),
+    )
+
+    myimage = pygame_menu.baseimage.BaseImage(
+        image_path="./assets/sprites/ifi_pixel.png",
+        drawing_mode=pygame_menu.baseimage.IMAGE_MODE_CENTER,
+    )
+
+    mytheme.background_color = myimage
+
+    menu = pygame_menu.Menu("CYCLE of IFI", WIDTH, HEIGHT, theme=mytheme)
+
+    menu.add.button("START", start_game)
+    menu.add.button("QUIT", pygame_menu.events.EXIT)
 
     return menu
 
@@ -46,8 +61,8 @@ def start_game():
 
 def run():
 
-    tasks_font = pygame.font.Font(PIXELFONT, 40)    
-    exchange_font = pygame.font.Font(PIXELFONT, 30)    
+    tasks_font = pygame.font.Font(PIXELFONT, 40)
+    exchange_font = pygame.font.Font(PIXELFONT, 30)
     clock = pygame.time.Clock()
 
     # background + doors
@@ -57,17 +72,17 @@ def run():
     finished_tasks = 2
     TOTAL_TASKS = 3
 
-    #objects
+    # objects
     p1 = Player()
     npc1 = NPC(700, 205, (60, 90))
-    top_bar = BlackBar(0,0, WIDTH, TOP_BAR_HEIGHT, 100)
+    top_bar = BlackBar(0, 0, WIDTH, TOP_BAR_HEIGHT, 100)
     bottom_bar = BlackBar(0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
     level_1_trashcans = level.hall.get_Trashcan()
     t1, t2 = level_1_trashcans[0], level_1_trashcans[1]
     sofa = Trashcan(180, 435, SOFA, size=(120, 60))
 
     wall_thickness = 1
-    left_wall = Wall(0,0, wall_thickness, HEIGHT)
+    left_wall = Wall(0, 0, wall_thickness, HEIGHT)
     right_wall = Wall(WIDTH - wall_thickness, 0, wall_thickness, HEIGHT)
 
     all_sprites = pygame.sprite.Group()
@@ -75,45 +90,45 @@ def run():
     walls = pygame.sprite.Group()
 
     all_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall, t1, p1, t2, sofa)
-    all_other_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall, t1, t2, sofa)
+    all_other_sprites.add(
+        npc1, top_bar, bottom_bar, left_wall, right_wall, t1, t2, sofa
+    )
     walls.add(left_wall, right_wall)
 
     # healthbar + bottle counter
     bottleCounter = BottleCounter()
     healthbar = Healthbar()
 
-
     def draw_frame():
-        #screen.fill(WHITE)
+        # screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
         all_sprites.draw(screen)
-    
+
     def draw_task_counter():
         text = f"AAR: {finished_tasks}/{TOTAL_TASKS}"
         text_surf = tasks_font.render(text, True, WHITE)
-        screen.blit(text_surf, (365,60))
-    
+        screen.blit(text_surf, (365, 60))
+
     # pant til hjerte
     def draw_exchange():
         text = f"PSST. Collect 3 pant to exchange for 1 life."
         text_surf = exchange_font.render(text, True, WHITE)
         screen.blit(text_surf, (20, 570))
-    
+
     def draw_background():
         level.draw(screen)
 
         for door in level.hall.doors:
             door.draw(screen)
-    
+
     # draw whiteboard - popup
     def draw_whiteboard():
         for door in level.hall.doors:
             door.draw_popup(screen)
-            
 
     # update door interaction
     def update_doors():
-        nonlocal finished_tasks # refererer til run() sin variabel
+        nonlocal finished_tasks  # refererer til run() sin variabel
         # door 1: quiz
         door1 = level.hall.doors[0]
         door1.update(p1.rect)
@@ -124,8 +139,9 @@ def run():
             correct = run_quiz(screen, door1.popup.rect)
 
             if correct:
-                finished_tasks = min(finished_tasks + 1, TOTAL_TASKS)  # mark task done
-            else:
+                finished_tasks = min(
+                    finished_tasks + 1, TOTAL_TASKS
+                )  # mark task done            else:
                 healthbar.lose_life()
 
             door1.popup.close()
@@ -138,16 +154,15 @@ def run():
         door3.update(p1.rect)
         door3.interact(keys)
 
-
     # close popup if "ESC" pressed
     def close_popup():
         for door in level.hall.doors:
             if door.popup.active and keys[pygame.K_ESCAPE]:
                 door.popup.close()
-    
+
     # collect pant
     def collect_pant(p1):
-        for pant in level.bottles: # copy list
+        for pant in level.bottles:  # copy list
             if p1.rect.colliderect(pant.rect):
                 bottleCounter.add()
                 level.bottles.remove(pant)
@@ -163,11 +178,11 @@ def run():
         while bottleCounter.count >= 3 and healthbar.amount < 3:
             bottleCounter.count -= 3
             healthbar.add_life(1)
-    
+
     # health bar
     def draw_health():
         healthbar.draw(screen)
-    
+
     # counter for pant
     def draw_bottleCounter():
         bottleCounter.draw(screen)
@@ -179,7 +194,6 @@ def run():
             game_over_screen.show()
             running = False
 
-
     running = True
     while running:
         clock.tick(FRAMERATE)
@@ -189,7 +203,7 @@ def run():
         for event in events:
             if event.type == pygame.QUIT:
                 running = False
-        
+
         keys = pygame.key.get_pressed()
         p1.update(keys, vel, all_other_sprites)
         npc1.update(p1)
@@ -211,7 +225,7 @@ def run():
         if update_tasks():
             running = False
 
-        # healthbar + bottle counter 
+        # healthbar + bottle counter
         draw_health()
         draw_bottleCounter()
 
@@ -223,11 +237,11 @@ def run():
         # whiteboard popup
         update_doors()
         close_popup()
-        
+
         level.hall.update(events)
-        
+
         pygame.display.flip()
-    
+
     # end scene
     end_screen = EndScreen(screen)
 

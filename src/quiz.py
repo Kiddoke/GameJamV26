@@ -19,10 +19,10 @@ def run_quiz(screen, board_rect):
     answer_rects = []
     for i in range(3):
         rect = pygame.Rect(
-            board_rect.x + 40,
-            board_rect.y + 100 + i*60,
-            board_rect.width - 80,
-            40
+            40,
+            100 + i*60,
+            board_rect.width + 100,
+            40 + 20
         )
         answer_rects.append(rect)
     
@@ -43,6 +43,8 @@ def run_quiz(screen, board_rect):
             
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 return False
+        
+        screen.blit(WHITEBOARD, board_rect.topleft)
         
         # draw overlay on whiteboard
         # question

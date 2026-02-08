@@ -43,12 +43,13 @@ def create_level_one():
 
     bottles = [b, b2, b3, b4, c, c2]
 
-    return Level(hall, bottles)
+    return Level(hall, bottles, game_of_life_popup)
 
 class Level:
-    def __init__(self, hall, bottles):
+    def __init__(self, hall, bottles, gml):
         self.hall = hall
         self.bottles = bottles
+        self.gml = gml
 
     def draw(self, screen):
         self.hall.draw(screen)
