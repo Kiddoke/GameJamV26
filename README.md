@@ -9,6 +9,7 @@ Gruppemedlemmer:
 - Alliana
 - Kevin
 - Mei
+- Marius
 - Maria
 
 ## Controls
