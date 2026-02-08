@@ -1,5 +1,6 @@
 import pygame
 from .settings import *
+from .assets import *
 
 class Classroom:
 
@@ -24,7 +25,7 @@ class Classroom:
             pygame.draw.rect(screen, (255, 255, 0), self.rect.inflate(8, 8))
 
             # text above door
-            font = pygame.font.Font(None, 20)
+            font = pygame.font.Font(PIXELFONT , 20)
             text = font.render("Press E", True, (255,255,255))
             text_rect = text.get_rect(center=(self.rect.centerx, self.rect.top - 15))
             screen.blit(text, text_rect.topleft)
