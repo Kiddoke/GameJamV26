@@ -102,6 +102,17 @@ def run():
     bottleCounter = BottleCounter()
     healthbar = Healthbar()
 
+    def play_music():
+        try: 
+            pygame.mixer.music.load('assets/sprites/background_music.mp3')
+        except pygame.error as e:
+            print(f"Cannot load music file: {e}")
+            sys.exit()
+        pygame.mixer.music.play(-1)
+
+    # play music
+    play_music()
+
     def draw_frame():
         # screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
