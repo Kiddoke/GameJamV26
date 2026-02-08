@@ -4,7 +4,6 @@ import time
 import os
 
 from .settings import *
-from .assets import *
 from .Player import Player
 from .npc import NPC
 from .level import create_level_one
@@ -35,7 +34,7 @@ def run():
     all_other_sprites.add(npc1)
 
     # healthbar + bottle counter
-    bottleCounter = BottleCounter(BOTTLE, CAN)
+    bottleCounter = BottleCounter()
     healthbar = Healthbar()
 
 
