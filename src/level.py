@@ -18,7 +18,7 @@ def create_level_one():
     cr3 = Classroom(80, 185, CLASSROOM_DOOR1, "scheme", popup)
 
     # trashcans
-    t1 = Trashcan(360, 215)
+    t1 = Trashcan(360, 215, offset=60)
     t2 = Trashcan(600, 430)
 
     hall.add_door(cr1)

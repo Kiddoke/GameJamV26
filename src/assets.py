@@ -10,8 +10,8 @@ PLAYER_SPRITE_BACK_UP = pygame.image.load('./assets/sprites/player_sprite_back_u
 OJD_SPRITE_FRONT_LEFT = pygame.image.load('./assets/sprites/ojd_sprite_front_left.png')
 LT_SPRITE_GIF = pygame.image.load('./assets/sprites/game_charac_right_1.gif')
 SOFA = pygame.image.load('./assets/sprites/sofa.png')
-
-
+LARS_TVEITA_1 = pygame.image.load('./assets/sprites/LARS_TVEITA_1.png')
+LARS_TVEITA_2 = pygame.image.load('./assets/sprites/LARS_TVEITA_2.png')
 # level
 DOOR_SIZE = (70,98)
 CLASSROOM_DOOR1 = pygame.image.load('./assets/sprites/door1.png')
