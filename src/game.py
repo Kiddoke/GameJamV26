@@ -4,6 +4,7 @@ import time
 import os
 
 from .settings import *
+from .assets import *
 from .Player import Player
 from .npc import NPC
 from .level import create_level_one
@@ -55,6 +56,14 @@ def run():
         for door in hall.doors:
             if door.popup.active and keys[pygame.K_ESCAPE]:
                 door.popup.close()
+    
+    # health bar
+    def draw_health():
+        x = 20
+        y = 60
+
+        for i in range(3):
+            screen.blit(FULL_HEART, (x + i * (HEART_SIZE[0] + 5), y))
 
 
     running = True
@@ -72,11 +81,15 @@ def run():
         update_doors()
         close_popup()
 
+        # draw hall 
         draw_background()
 
         # black bars
         pygame.draw.rect(screen, (0,0,0), (0,0, WIDTH, TOP_BAR_HEIGHT))
         pygame.draw.rect(screen, (0,0,0), (0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT))
+
+        # healthbar
+        draw_health()
 
         draw_frame()
         pygame.display.flip()
