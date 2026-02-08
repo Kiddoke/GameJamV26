@@ -44,6 +44,18 @@ def run():
         for door in hall.doors:
             door.draw(screen)
 
+    # update door interaction
+    def update_doors():
+        for door in hall.doors:
+            door.update(p1.rect)
+            door.interact(keys)
+
+    # close popup if "ESC" pressed
+    def close_popup():
+        for door in hall.doors:
+            if door.popup.active and keys[pygame.K_ESCAPE]:
+                door.popup.close()
+
 
     running = True
     while running:
@@ -56,15 +68,9 @@ def run():
         keys = pygame.key.get_pressed()
         p1.update(keys, vel, all_other_sprites)
 
-        # update door interaction
-        for door in hall.doors:
-            door.update(p1.rect)
-            door.interact(keys)
-        
-        # close popup if "ESC" pressed
-        for door in hall.doors:
-            if door.popup.active and keys[pygame.K_ESCAPE]:
-                door.popup.close()
+        # whiteboard popup
+        update_doors()
+        close_popup()
 
         draw_background()
 

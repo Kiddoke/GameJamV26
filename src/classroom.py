@@ -12,7 +12,7 @@ class Classroom:
         self.highlighted = False
 
     def update(self, player_rect):
-        self.highlighted = self.rect.colliderect(player_rect.inflate(40,40))
+        self.highlighted = self.rect.colliderect(player_rect.inflate(-20,-80))
     
     # press 'E'
     def interact(self, key_pressed):
@@ -21,13 +21,21 @@ class Classroom:
     
     def draw(self, screen):
         if self.highlighted:
-            pygame.draw.rect(screen, (255, 255, 0), self.rect.inflate(10, 10))
-        
+            pygame.draw.rect(screen, (255, 255, 0), self.rect.inflate(8, 8))
+
+            # text above door
+            font = pygame.font.Font(None, 20)
+            text = font.render("Press E", True, (255,255,255))
+            text_rect = text.get_rect(center=(self.rect.centerx, self.rect.top - 15))
+            screen.blit(text, text_rect.topleft)
+
         # door
         screen.blit(self.image, self.rect.topleft)
 
         # popup if active
         self.popup.draw(screen)
+
+
     
 
         
