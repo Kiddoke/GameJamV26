@@ -37,6 +37,8 @@ class Classroom:
         # popup if active
         self.popup.draw(screen)
 
+    def update_whiteboard(self, events):
+        self.popup.update(events)
 
     
 

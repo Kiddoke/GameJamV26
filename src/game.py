@@ -109,6 +109,7 @@ def run():
     def draw_whiteboard():
         for door in level.hall.doors:
             door.draw_popup(screen)
+            
 
     # update door interaction
     def update_doors():
@@ -183,7 +184,9 @@ def run():
     while running:
         clock.tick(FRAMERATE)
 
-        for event in pygame.event.get():
+        events = pygame.event.get()
+
+        for event in events:
             if event.type == pygame.QUIT:
                 running = False
         
