@@ -25,7 +25,7 @@ screen = pygame.display.set_mode(
 
 def main():
 
-    pygame.display.set_caption("IFI SPILL")
+    pygame.display.set_caption("CYCLE of IFI")
 
     menu = create_menu(screen)
 
