@@ -159,7 +159,7 @@ def run():
         return False
 
     def exchange_bottles_for_life():
-        while bottleCounter.count >= 3:
+        while bottleCounter.count >= 3 and healthbar.amount < 3:
             bottleCounter.count -= 3
             healthbar.add_life(1)
     
