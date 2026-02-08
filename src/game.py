@@ -13,11 +13,13 @@ from .assets import *
 from .bottleCounter import BottleCounter
 from .healthbar import Healthbar
 from .bachelor import EndScreen
+from .quiz import run_quiz
 
 
 pygame.init()
 vel = 3.5
 screen = pygame.display.set_mode((WIDTH, HEIGHT)) # needed here by assets.py What is this??
+QUIT_GAME = True
 
 def main():
 
@@ -52,7 +54,7 @@ def run():
     level = create_level_one()
 
     # task counter
-    finished_tasks = 3
+    finished_tasks = 2
     TOTAL_TASKS = 3
 
     #objects
@@ -96,9 +98,29 @@ def run():
 
     # update door interaction
     def update_doors():
-        for door in level.hall.doors:
-            door.update(p1.rect)
-            door.interact(keys)
+        nonlocal finished_tasks # refererer til run() sin variabel
+        # door 1: quiz
+        door1 = level.hall.doors[0]
+        door1.update(p1.rect)
+        door1.interact(keys)
+
+        # quiz
+        if door1.popup.active and keys[pygame.K_e]:
+            correct = run_quiz(screen, door1.popup.rect)
+
+            if correct:
+                finished_tasks += 1  # mark task done
+
+            door1.popup.close()
+
+        door2 = level.hall.doors[1]
+        door2.update(p1.rect)
+        door2.interact(keys)
+
+        door3 = level.hall.doors[2]
+        door3.update(p1.rect)
+        door3.interact(keys)
+
 
     # close popup if "ESC" pressed
     def close_popup():
@@ -116,6 +138,7 @@ def run():
     # update tasks
     def update_tasks():
         if finished_tasks >= TOTAL_TASKS and p1.rect.right > WIDTH - 2:
+            QUIT_GAME = False
             return True
         return False
     
@@ -139,10 +162,6 @@ def run():
         keys = pygame.key.get_pressed()
         p1.update(keys, vel, all_other_sprites)
 
-        # whiteboard popup
-        update_doors()
-        close_popup()
-
         # collect pant
         collect_pant(p1)
 
@@ -162,12 +181,18 @@ def run():
 
         # whiteboard - should be on top of everything else
         draw_whiteboard()
+
+        # whiteboard popup
+        update_doors()
+        close_popup()
         
         pygame.display.flip()
     
     # end scene
     end_screen = EndScreen(screen)
-    end_screen.show()
+
+    if finished_tasks == TOTAL_TASKS:
+        end_screen.show()
 
     pygame.quit()
     sys.exit()
