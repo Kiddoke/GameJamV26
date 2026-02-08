@@ -12,9 +12,13 @@ class Hall:
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
 
         self.doors = []
+        self.trashcans = []
     
     def add_door(self, door):
         self.doors.append(door)
+    
+    def add_trashcan(self, trashcan):
+        self.trashcans.append(trashcan)
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -22,6 +26,10 @@ class Hall:
         # tegne dørene 
         for door in self.doors:
             door.draw(screen)
+        
+        # tegne trashcans
+        for trashcan in self.trashcans:
+            trashcan.draw(screen)
         
 class BlackBar(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):

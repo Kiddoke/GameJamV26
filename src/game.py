@@ -47,7 +47,7 @@ def run():
     
     clock = pygame.time.Clock()
     # background + doors
-    hall = create_level_one()
+    level = create_level_one()
 
     #objects
     p1 = Player()
@@ -78,22 +78,29 @@ def run():
         all_sprites.draw(screen)
     
     def draw_background():
-        hall.draw(screen)
+        level.draw(screen)
 
-        for door in hall.doors:
+        for door in level.hall.doors:
             door.draw(screen)
 
     # update door interaction
     def update_doors():
-        for door in hall.doors:
+        for door in level.hall.doors:
             door.update(p1.rect)
             door.interact(keys)
 
     # close popup if "ESC" pressed
     def close_popup():
-        for door in hall.doors:
+        for door in level.hall.doors:
             if door.popup.active and keys[pygame.K_ESCAPE]:
                 door.popup.close()
+    
+    # collect pant
+    def collect_pant(p1):
+        for pant in level.bottles: # copy list
+            if p1.rect.colliderect(pant.rect):
+                bottleCounter.add()
+                level.bottles.remove(pant)
     
     # health bar
     def draw_health():
@@ -119,10 +126,12 @@ def run():
         update_doors()
         close_popup()
 
-        # draw hall 
-        draw_background()
+        # collect pant
+        collect_pant(p1)
 
-        hall.draw(screen)
+        # draw level
+        draw_background()
+        level.draw(screen)
 
         draw_frame()
 

@@ -4,6 +4,8 @@ from .assets import *
 from .classroom import Classroom
 from .hall import Hall
 from .whiteboard import Whiteboard
+from .trashcan import Trashcan
+from .pant import Pant
 
 def create_level_one():
     popup = Whiteboard()
@@ -15,14 +17,42 @@ def create_level_one():
     cr2 = Classroom(250, 185, CLASSROOM_DOOR2,  "python", popup)
     cr3 = Classroom(80, 185, CLASSROOM_DOOR1, "scheme", popup)
 
+    # trashcans
+    t = Trashcan(360, 220)
+    t2 = Trashcan(600, 430)
+
     hall.add_door(cr1)
     hall.add_door(cr2)
     hall.add_door(cr3)
 
-    return hall
+    hall.add_trashcan(t)
+    hall.add_trashcan(t2)
 
+    # pant
+    pant_y = 187
+    b = Pant(375, pant_y, BOTTLE)
+    b2 = Pant(395, pant_y, BOTTLE)
+    c = Pant(420, pant_y, CAN)
 
+    pant_y2 = 400
+    b3 = Pant(615, pant_y2, BOTTLE)
+    b4 = Pant(640, pant_y2, BOTTLE)
+    c2 = Pant(665, pant_y2, CAN)
 
+    bottles = [b, b2, b3, b4, c, c2]
+
+    return Level(hall, bottles)
+
+class Level:
+    def __init__(self, hall, bottles):
+        self.hall = hall
+        self.bottles = bottles
+
+    def draw(self, screen):
+        self.hall.draw(screen)
+
+        for pant in self.bottles:
+            pant.draw(screen)
 
 
 

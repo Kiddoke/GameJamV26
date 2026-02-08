@@ -5,6 +5,7 @@ PLAYER_SPRITE_FRONT_LEFT = pygame.image.load('./assets/sprites/player_sprite_fro
 PLAYER_SPRITE_FRONT_DOWN = pygame.image.load('./assets/sprites/player_sprite_front_down.png')
 PLAYER_SPRITE_BACK_UP = pygame.image.load('./assets/sprites/player_sprite_back_up.png')
 OJD_SPRITE_FRONT_LEFT = pygame.image.load('./assets/sprites/ojd_sprite_front_left.png')
+
 # level
 DOOR_SIZE = (70,98)
 CLASSROOM_DOOR1 = pygame.image.load('./assets/sprites/door1.png')
@@ -24,6 +25,10 @@ PANT_SIZE = (20, 40)
 BOTTLE = pygame.image.load('./assets/sprites/pant.png')
 CAN = pygame.image.load('./assets/sprites/wonster.png')
 
+# trashcan
+TRASHCAN_SIZE = (95, 65)
+TRASHCAN = pygame.image.load('./assets/sprites/trashcan.png')
+
 # scale
 CLASSROOM_DOOR1 = pygame.transform.scale(CLASSROOM_DOOR1, DOOR_SIZE)
 CLASSROOM_DOOR2 = pygame.transform.scale(CLASSROOM_DOOR2, DOOR_SIZE)
@@ -32,6 +37,7 @@ FULL_HEART = pygame.transform.scale(FULL_HEART, HEART_SIZE)
 EMPTY_HEART = pygame.transform.scale(EMPTY_HEART, HEART_SIZE)
 BOTTLE = pygame.transform.scale(BOTTLE, PANT_SIZE)
 CAN = pygame.transform.scale(CAN, PANT_SIZE)
+TRASHCAN = pygame.transform.scale(TRASHCAN, TRASHCAN_SIZE)
 
 
 
