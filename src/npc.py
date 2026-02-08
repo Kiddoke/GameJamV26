@@ -17,6 +17,7 @@ class NPC(pygame.sprite.Sprite):
         self.mode = "tveita1"
         self.image = self.sprites[self.mode]
         self.rect = self.image.get_rect(topleft=(x, y))
+        self.rect.height -= 70
 
         self.last_switch = pygame.time.get_ticks()
         self.switch_delay = 500  # ms

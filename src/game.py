@@ -18,9 +18,7 @@ from .gameover import GameOver
 
 pygame.init()
 vel = 3.5
-screen = pygame.display.set_mode(
-    (WIDTH, HEIGHT)
-)  # needed here by assets.py What is this??
+screen = pygame.display.set_mode((WIDTH, HEIGHT)) 
 
 
 def main():
