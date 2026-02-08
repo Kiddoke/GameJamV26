@@ -6,6 +6,7 @@ import os
 from .settings import *
 from .Player import Player
 from .npc import NPC
+from .level import create_level_one
 
 
 pygame.init()
@@ -18,6 +19,8 @@ def run():
 
     clock = pygame.time.Clock()
 
+    # background + doors
+    hall = create_level_one()
 
     #objects
     all_sprites = pygame.sprite.Group()
@@ -31,7 +34,7 @@ def run():
 
 
     def draw_frame():
-        screen.fill(WHITE)
+        #screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
         all_sprites.draw(screen)
 
@@ -47,6 +50,11 @@ def run():
         keys = pygame.key.get_pressed()
         p1.update(keys, vel, all_other_sprites)
 
+        hall.draw(screen)
+
+        # black bars
+        pygame.draw.rect(screen, (0,0,0), (0,0, WIDTH, TOP_BAR_HEIGHT))
+        pygame.draw.rect(screen, (0,0,0), (0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT))
 
         draw_frame()
         pygame.display.flip()
