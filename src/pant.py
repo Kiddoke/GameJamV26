@@ -12,7 +12,6 @@ class Pant:
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         self.collected = False
         self.rect.height += offset
-        print(self.rect.height)
 
     def draw(self, screen):
         if not self.collected:
