@@ -16,10 +16,15 @@ LARS_TVEITA_2 = pygame.image.load('./assets/sprites/LARS_TVEITA_2.png')
 DOOR_SIZE = (70,98)
 CLASSROOM_DOOR1 = pygame.image.load('./assets/sprites/door1.png')
 CLASSROOM_DOOR2 = pygame.image.load('./assets/sprites/door2.png')
+CLASSROOM_DOOR3 = pygame.image.load('./assets/sprites/door1.png')
+
 HALLWAY = pygame.image.load('./assets/sprites/HALLWAY_VERSION2.png')
 
 # whiteboard
-WHITEBOARD = pygame.image.load('./assets/sprites/whiteboard.png')
+WHITEBOARD1 = pygame.image.load('./assets/sprites/whiteboard.png')
+WHITEBOARD2 = pygame.image.load('./assets/sprites/whiteboard.png')
+WHITEBOARD3 = pygame.image.load('./assets/sprites/whiteboard.png')
+
 
 # healthbar
 HEART_SIZE = (30, 30)
@@ -44,7 +49,10 @@ JOBB = pygame.image.load('./assets/sprites/jobb.png')
 # scale
 CLASSROOM_DOOR1 = pygame.transform.scale(CLASSROOM_DOOR1, DOOR_SIZE)
 CLASSROOM_DOOR2 = pygame.transform.scale(CLASSROOM_DOOR2, DOOR_SIZE)
-WHITEBOARD = pygame.transform.scale(WHITEBOARD, (510, 300))
+CLASSROOM_DOOR3 = pygame.transform.scale(CLASSROOM_DOOR3, DOOR_SIZE)
+WHITEBOARD1 = pygame.transform.scale(WHITEBOARD1, (510, 300))
+WHITEBOARD2 = pygame.transform.scale(WHITEBOARD2, (510, 300))
+WHITEBOARD3 = pygame.transform.scale(WHITEBOARD3, (510, 300))
 FULL_HEART = pygame.transform.scale(FULL_HEART, HEART_SIZE)
 EMPTY_HEART = pygame.transform.scale(EMPTY_HEART, HEART_SIZE)
 BOTTLE = pygame.transform.scale(BOTTLE, PANT_SIZE)

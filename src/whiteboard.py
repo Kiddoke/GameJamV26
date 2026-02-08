@@ -1,6 +1,7 @@
-from random import random
+from random import choice, randint, random
 import pygame
 
+from src.findyoself.Head import Head
 from src.gameoflife.Cell import Cell
 from src.gameoflife.Target import Target
 from src.gameoflife.CellGrid import CellGrid
@@ -13,7 +14,7 @@ from .settings import *
 class Whiteboard:
 
     def __init__(self):
-        self.image = WHITEBOARD
+        self.image = WHITEBOARD1
         self.active = False
         self.rect = self.image.get_rect()
 
@@ -45,6 +46,8 @@ class Whiteboard:
 class GameOfLifeWhiteboard(Whiteboard):
     def __init__(self):
         super().__init__()
+        
+        self.image = WHITEBOARD2
 
         # logical grid size
         self.ROWS = 9
@@ -225,3 +228,49 @@ class GameOfLifeWhiteboard(Whiteboard):
             return
         for cell in self.grid:
             cell.update(events)
+            
+            
+            
+class FindYoSelfWhiteboard(Whiteboard):
+    def __init__(self):
+        super().__init__()
+        
+        self.image = WHITEBOARD3
+    
+        self.FPS = 60
+        self.timer = 30 * self.FPS
+        
+        self.heads = [Head(
+            randint(0, WIDTH), 
+            randint(0, HEIGHT), 
+            "1" if random() > 0.5 else "2", 
+            WIDTH, 
+            HEIGHT,
+            "assets/sprites/" + choice(["lars", "ojd", "kirurgen"]) + ".png",
+            lambda: print("WROOOONG")
+            ) for _ in range(500)]
+
+        self.you = Head(
+            randint(0, WIDTH), 
+            randint(0, HEIGHT), 
+            "1" if random() > 0.5 else "2", 
+            WIDTH, 
+            HEIGHT,
+            "assets/sprites/ka.png",
+            lambda: print("WINN")
+        )
+
+        self.all_sprites = pygame.sprite.Group()
+        self.all_sprites.add(self.you)
+        self.all_sprites.add(*self.heads)
+        
+    def draw(self, screen):
+        if not self.active:
+            return
+        for sprite in self.all_sprites:
+            screen.blit(sprite.image, sprite.rect)
+            sprite.move("STRAIGHT", 2)
+        
+
+    def update(self, events):
+        self.all_sprites.update(events)
