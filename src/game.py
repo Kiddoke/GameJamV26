@@ -37,6 +37,12 @@ def run():
         #screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
         all_sprites.draw(screen)
+    
+    def draw_background():
+        hall.draw(screen)
+
+        for door in hall.doors:
+            door.draw(screen)
 
 
     running = True
@@ -50,7 +56,17 @@ def run():
         keys = pygame.key.get_pressed()
         p1.update(keys, vel, all_other_sprites)
 
-        hall.draw(screen)
+        # update door interaction
+        for door in hall.doors:
+            door.update(p1.rect)
+            door.interact(keys)
+        
+        # close popup if "ESC" pressed
+        for door in hall.doors:
+            if door.popup.active and keys[pygame.K_ESCAPE]:
+                door.popup.close()
+
+        draw_background()
 
         # black bars
         pygame.draw.rect(screen, (0,0,0), (0,0, WIDTH, TOP_BAR_HEIGHT))
