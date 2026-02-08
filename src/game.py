@@ -61,8 +61,8 @@ def start_game():
 
 def run():
 
-    tasks_font = pygame.font.Font(PIXELFONT, 40)    
-    exchange_font = pygame.font.Font(PIXELFONT, 30)    
+    tasks_font = pygame.font.Font(PIXELFONT, 40)
+    exchange_font = pygame.font.Font(PIXELFONT, 30)
     clock = pygame.time.Clock()
 
     # background + doors
@@ -74,7 +74,7 @@ def run():
 
     # objects
     p1 = Player()
-    npc1 = NPC(700, 205, OJD_SPRITE_FRONT_LEFT, (60, 90))
+    npc1 = NPC(700, 205, (60, 90))
     top_bar = BlackBar(0, 0, WIDTH, TOP_BAR_HEIGHT, 100)
     bottom_bar = BlackBar(0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
     level_1_trashcans = level.hall.get_Trashcan()
@@ -103,18 +103,18 @@ def run():
         # screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
         all_sprites.draw(screen)
-    
+
     def draw_task_counter():
         text = f"AAR: {finished_tasks}/{TOTAL_TASKS}"
         text_surf = tasks_font.render(text, True, WHITE)
-        screen.blit(text_surf, (365,60))
-    
+        screen.blit(text_surf, (365, 60))
+
     # pant til hjerte
     def draw_exchange():
         text = f"PSST. Collect 3 pant to exchange for 1 life."
         text_surf = exchange_font.render(text, True, WHITE)
         screen.blit(text_surf, (20, 570))
-    
+
     def draw_background():
         level.draw(screen)
 
@@ -125,11 +125,10 @@ def run():
     def draw_whiteboard():
         for door in level.hall.doors:
             door.draw_popup(screen)
-            
 
     # update door interaction
     def update_doors():
-        nonlocal finished_tasks # refererer til run() sin variabel
+        nonlocal finished_tasks  # refererer til run() sin variabel
         # door 1: quiz
         door1 = level.hall.doors[0]
         door1.update(p1.rect)
@@ -140,7 +139,9 @@ def run():
             correct = run_quiz(screen, door1.popup.rect)
 
             if correct:
-                finished_tasks = min(finished_tasks + 1, TOTAL_TASKS)  # mark task done            else:
+                finished_tasks = min(
+                    finished_tasks + 1, TOTAL_TASKS
+                )  # mark task done            else:
                 healthbar.lose_life()
 
             door1.popup.close()
@@ -152,7 +153,6 @@ def run():
         door3 = level.hall.doors[2]
         door3.update(p1.rect)
         door3.interact(keys)
-
 
     # close popup if "ESC" pressed
     def close_popup():
@@ -178,7 +178,7 @@ def run():
         while bottleCounter.count >= 3 and healthbar.amount < 3:
             bottleCounter.count -= 3
             healthbar.add_life(1)
-    
+
     # health bar
     def draw_health():
         healthbar.draw(screen)
@@ -193,7 +193,6 @@ def run():
             game_over_screen = GameOver(screen)
             game_over_screen.show()
             running = False
-
 
     running = True
     while running:
@@ -238,9 +237,9 @@ def run():
         # whiteboard popup
         update_doors()
         close_popup()
-        
+
         level.hall.update(events)
-        
+
         pygame.display.flip()
 
     # end scene
