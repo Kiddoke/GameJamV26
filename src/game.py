@@ -8,6 +8,7 @@ from .settings import *
 from .Player import Player
 from .npc import NPC
 from .level import create_level_one
+from .hall import BlackBar, Wall
 from .assets import *
 
 
@@ -47,13 +48,22 @@ def run():
     hall = create_level_one()
 
     #objects
-    all_sprites = pygame.sprite.Group()
-    all_other_sprites = pygame.sprite.Group()
     p1 = Player()
     npc1 = NPC(OJD_SPRITE_FRONT_LEFT)
-    all_sprites.add(p1)
-    all_sprites.add(npc1)
-    all_other_sprites.add(npc1)
+    top_bar = BlackBar(0,0, WIDTH, TOP_BAR_HEIGHT)
+    bottom_bar = BlackBar(0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
+
+    wall_thickness = 1
+    left_wall = Wall(0,0, wall_thickness, HEIGHT)
+    right_wall = Wall(WIDTH - wall_thickness, 0, wall_thickness, HEIGHT)
+
+    all_sprites = pygame.sprite.Group()
+    all_other_sprites = pygame.sprite.Group()
+    walls = pygame.sprite.Group()
+
+    all_sprites.add(p1, npc1, top_bar, bottom_bar, left_wall, right_wall)
+    all_other_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall)
+    walls.add(left_wall, right_wall)
 
 
 
@@ -61,6 +71,7 @@ def run():
         #screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
         all_sprites.draw(screen)
+
 
 
     running = True
@@ -74,11 +85,8 @@ def run():
         keys = pygame.key.get_pressed()
         p1.update(keys, vel, all_other_sprites)
 
-        hall.draw(screen)
 
-        # black bars
-        pygame.draw.rect(screen, (0,0,0), (0,0, WIDTH, TOP_BAR_HEIGHT))
-        pygame.draw.rect(screen, (0,0,0), (0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT))
+        hall.draw(screen)
 
         draw_frame()
         pygame.display.flip()
