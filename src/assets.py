@@ -11,6 +11,11 @@ CLASSROOM_DOOR1 = pygame.image.load('./assets/sprites/door1.png')
 CLASSROOM_DOOR2 = pygame.image.load('./assets/sprites/door2.png')
 HALLWAY = pygame.image.load('./assets/sprites/HALLWAY_VERSION2.png')
 
+# whiteboard
+WHITEBOARD = pygame.image.load('./assets/sprites/whiteboard.png')
+
 # scale
 CLASSROOM_DOOR1 = pygame.transform.scale(CLASSROOM_DOOR1, DOOR_SIZE)
 CLASSROOM_DOOR2 = pygame.transform.scale(CLASSROOM_DOOR2, DOOR_SIZE)
+WHITEBOARD = pygame.transform.scale(WHITEBOARD, (510, 300))
+
