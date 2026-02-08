@@ -23,3 +23,16 @@ class Hall:
         for door in self.doors:
             door.draw(screen)
         
+class BlackBar(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height):
+        super().__init__()
+        self.image = pygame.Surface((width, height))
+        self.image.fill((0,0,0)) #RGB
+        self.rect = self.image.get_rect(topleft=(x,y))
+
+class Wall(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height, alpha=0):
+        super().__init__()
+        self.image = pygame.Surface((width, height))
+        self.image.fill(alpha) #Usynlig
+        self.rect = self.image.get_rect(topleft=(x,y))

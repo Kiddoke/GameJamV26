@@ -8,8 +8,6 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
-        self.x = 50
-        self.y = 50
         self.size = (60, 90)
         self.direction = "down"
         self.sprites = {
@@ -22,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.image = self.sprites[self.direction]
         self.rect = self.sprites[self.direction].get_rect()
         self.rect.x = 50
-        self.rect.y = 50
+        self.rect.y = 300
 
 
     def update(self, keys, vel, colliders):

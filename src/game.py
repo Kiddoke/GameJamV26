@@ -1,4 +1,5 @@
 import pygame
+import pygame_menu
 import sys
 import time
 import os
@@ -7,31 +8,64 @@ from .settings import *
 from .Player import Player
 from .npc import NPC
 from .level import create_level_one
+from .hall import BlackBar, Wall
+from .assets import *
 from .bottleCounter import BottleCounter
 from .healthbar import Healthbar
 
 
 pygame.init()
 vel = 3.5
+screen = pygame.display.set_mode((WIDTH, HEIGHT)) # needed here by assets.py What is this??
+
+def main():
+
+    
+    pygame.display.set_caption("IFI SPILL")
+
+    menu = create_menu(screen)
+
+    title_screen = True
+    while title_screen:
+        menu.mainloop(screen)
+
+def create_menu(screen):
+    menu = pygame_menu.Menu('IFI SPILL', WIDTH, HEIGHT, theme=pygame_menu.themes.THEME_BLUE)
+
+    menu.add.button('Start', start_game)
+    menu.add.button('Quit', pygame_menu.events.EXIT)
+
+    return menu
+
+
+def start_game():
+    run()
 
 
 def run():
-    pygame.display.set_caption("IFI SPILL")
-    screen = pygame.display.set_mode((WIDTH, HEIGHT)) # needed here by assets.py What is this??
 
+    
     clock = pygame.time.Clock()
-
     # background + doors
     hall = create_level_one()
 
     #objects
+    p1 = Player()
+    npc1 = NPC(OJD_SPRITE_FRONT_LEFT)
+    top_bar = BlackBar(0,0, WIDTH, TOP_BAR_HEIGHT)
+    bottom_bar = BlackBar(0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
+
+    wall_thickness = 1
+    left_wall = Wall(0,0, wall_thickness, HEIGHT)
+    right_wall = Wall(WIDTH - wall_thickness, 0, wall_thickness, HEIGHT)
+
     all_sprites = pygame.sprite.Group()
     all_other_sprites = pygame.sprite.Group()
-    p1 = Player()
-    npc1 = NPC()
-    all_sprites.add(p1)
-    all_sprites.add(npc1)
-    all_other_sprites.add(npc1)
+    walls = pygame.sprite.Group()
+
+    all_sprites.add(p1, npc1, top_bar, bottom_bar, left_wall, right_wall)
+    all_other_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall)
+    walls.add(left_wall, right_wall)
 
     # healthbar + bottle counter
     bottleCounter = BottleCounter()
@@ -69,6 +103,7 @@ def run():
     def draw_bottleCounter():
         bottleCounter.draw(screen)
 
+
     running = True
     while running:
         clock.tick(FRAMERATE)
@@ -87,9 +122,7 @@ def run():
         # draw hall 
         draw_background()
 
-        # black bars
-        pygame.draw.rect(screen, (0,0,0), (0,0, WIDTH, TOP_BAR_HEIGHT))
-        pygame.draw.rect(screen, (0,0,0), (0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT))
+        hall.draw(screen)
 
         # healthbar + bottle counter
         draw_health()
