@@ -31,7 +31,8 @@ class Classroom:
 
         # door
         screen.blit(self.image, self.rect.topleft)
-
+    
+    def draw_popup(self, screen):
         # popup if active
         self.popup.draw(screen)
 
