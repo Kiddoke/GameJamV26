@@ -156,6 +156,7 @@ def run():
                 finished_tasks = min(
                     finished_tasks + 1, TOTAL_TASKS
                 )  # mark task done            else:
+            else:
                 healthbar.lose_life()
 
             door1.popup.close()
