@@ -82,6 +82,11 @@ def run():
 
         for door in level.hall.doors:
             door.draw(screen)
+    
+    # draw whiteboard - popup
+    def draw_whiteboard():
+        for door in level.hall.doors:
+            door.draw_popup(screen)
 
     # update door interaction
     def update_doors():
@@ -135,9 +140,12 @@ def run():
 
         draw_frame()
 
-        # healthbar + bottle counter
+        # healthbar + bottle counter 
         draw_health()
         draw_bottleCounter()
+
+        # whiteboard - should be on top of everything else
+        draw_whiteboard()
         
         pygame.display.flip()
 
