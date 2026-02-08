@@ -58,12 +58,12 @@ def run():
 
     #objects
     p1 = Player()
-    npc1 = NPC(700, 205, OJD_SPRITE_FRONT_LEFT, (60, 90))
+    npc1 = NPC(700, 205, (60, 90))
     top_bar = BlackBar(0,0, WIDTH, TOP_BAR_HEIGHT, 100)
     bottom_bar = BlackBar(0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
     level_1_trashcans = level.hall.get_Trashcan()
     t1, t2 = level_1_trashcans[0], level_1_trashcans[1]
-    sofa = NPC(180, 435, SOFA, (120, 60))
+    sofa = Trashcan(180, 435, SOFA, size=(120, 60))
 
     wall_thickness = 1
     left_wall = Wall(0,0, wall_thickness, HEIGHT)
@@ -142,6 +142,7 @@ def run():
         
         keys = pygame.key.get_pressed()
         p1.update(keys, vel, all_other_sprites)
+        npc1.update(p1)
 
         # whiteboard popup
         update_doors()
