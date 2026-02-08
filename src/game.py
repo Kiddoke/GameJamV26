@@ -124,11 +124,12 @@ def run():
 
         hall.draw(screen)
 
+        draw_frame()
+
         # healthbar + bottle counter
         draw_health()
         draw_bottleCounter()
-
-        draw_frame()
+        
         pygame.display.flip()
 
     pygame.quit()
