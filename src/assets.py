@@ -8,6 +8,7 @@ PLAYER_SPRITE_FRONT_LEFT = pygame.image.load('./assets/sprites/player_sprite_fro
 PLAYER_SPRITE_FRONT_DOWN = pygame.image.load('./assets/sprites/player_sprite_front_down.png')
 PLAYER_SPRITE_BACK_UP = pygame.image.load('./assets/sprites/player_sprite_back_up.png')
 OJD_SPRITE_FRONT_LEFT = pygame.image.load('./assets/sprites/ojd_sprite_front_left.png')
+LT_SPRITE_GIF = pygame.image.load('./assets/sprites/game_charac_right_1.gif')
 
 # level
 DOOR_SIZE = (70,98)
