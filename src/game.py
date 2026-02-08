@@ -12,6 +12,7 @@ from .hall import BlackBar, Wall
 from .assets import *
 from .bottleCounter import BottleCounter
 from .healthbar import Healthbar
+from .bachelor import EndScreen
 
 
 pygame.init()
@@ -46,8 +47,13 @@ def run():
 
     
     clock = pygame.time.Clock()
+
     # background + doors
     level = create_level_one()
+
+    # task counter
+    finished_tasks = 3
+    TOTAL_TASKS = 3
 
     #objects
     p1 = Player()
@@ -106,6 +112,12 @@ def run():
             if p1.rect.colliderect(pant.rect):
                 bottleCounter.add()
                 level.bottles.remove(pant)
+
+    # update tasks
+    def update_tasks():
+        if finished_tasks >= TOTAL_TASKS and p1.rect.right > WIDTH - 2:
+            return True
+        return False
     
     # health bar
     def draw_health():
@@ -140,6 +152,10 @@ def run():
 
         draw_frame()
 
+        # checking if u reached the goal
+        if update_tasks():
+            running = False
+
         # healthbar + bottle counter 
         draw_health()
         draw_bottleCounter()
@@ -148,6 +164,10 @@ def run():
         draw_whiteboard()
         
         pygame.display.flip()
+    
+    # end scene
+    end_screen = EndScreen(screen)
+    end_screen.show()
 
     pygame.quit()
     sys.exit()
