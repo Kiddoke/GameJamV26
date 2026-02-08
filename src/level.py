@@ -3,18 +3,20 @@ import pygame
 from .assets import *
 from .classroom import Classroom
 from .hall import Hall
-from .whiteboard import Whiteboard
+from .whiteboard import GameOfLifeWhiteboard, Whiteboard
 from .trashcan import Trashcan
 from .pant import Pant
 
 def create_level_one():
     popup = Whiteboard()
+    
+    game_of_life_popup = GameOfLifeWhiteboard()
 
     hall = Hall("1.semester")
 
     # doors
     cr1 = Classroom(500, 185, CLASSROOM_DOOR1, "java", popup)
-    cr2 = Classroom(250, 185, CLASSROOM_DOOR2,  "python", popup)
+    cr2 = Classroom(250, 185, CLASSROOM_DOOR2,  "python", game_of_life_popup)
     cr3 = Classroom(80, 185, CLASSROOM_DOOR1, "scheme", popup)
 
     # trashcans
