@@ -8,8 +8,6 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
-        self.x = 50
-        self.y = 50
         self.size = (60, 90)
         self.direction = "down"
         self.sprites = {

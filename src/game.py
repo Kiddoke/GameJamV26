@@ -7,6 +7,7 @@ from .settings import *
 from .Player import Player
 from .npc import NPC
 from .level import create_level_one
+from .assets import *
 
 
 pygame.init()
@@ -26,7 +27,7 @@ def run():
     all_sprites = pygame.sprite.Group()
     all_other_sprites = pygame.sprite.Group()
     p1 = Player()
-    npc1 = NPC()
+    npc1 = NPC(OJD_SPRITE_FRONT_LEFT)
     all_sprites.add(p1)
     all_sprites.add(npc1)
     all_other_sprites.add(npc1)
