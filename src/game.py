@@ -124,8 +124,7 @@ def run():
             correct = run_quiz(screen, door1.popup.rect)
 
             if correct:
-                finished_tasks += 1  # mark task done
-            else:
+                finished_tasks = min(finished_tasks + 1, TOTAL_TASKS)  # mark task done            else:
                 healthbar.lose_life()
 
             door1.popup.close()
