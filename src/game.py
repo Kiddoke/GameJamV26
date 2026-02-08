@@ -14,12 +14,12 @@ from .bottleCounter import BottleCounter
 from .healthbar import Healthbar
 from .bachelor import EndScreen
 from .quiz import run_quiz
+from .gameover import GameOver
 
 
 pygame.init()
 vel = 3.5
 screen = pygame.display.set_mode((WIDTH, HEIGHT)) # needed here by assets.py What is this??
-QUIT_GAME = True
 
 def main():
 
@@ -47,7 +47,8 @@ def start_game():
 
 def run():
 
-    
+    tasks_font = pygame.font.Font(PIXELFONT, 40)    
+    exchange_font = pygame.font.Font(PIXELFONT, 30)    
     clock = pygame.time.Clock()
 
     # background + doors
@@ -85,6 +86,17 @@ def run():
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
         all_sprites.draw(screen)
     
+    def draw_task_counter():
+        text = f"AAR: {finished_tasks}/{TOTAL_TASKS}"
+        text_surf = tasks_font.render(text, True, WHITE)
+        screen.blit(text_surf, (365,60))
+    
+    # pant til hjerte
+    def draw_exchange():
+        text = f"PSST. Collect 3 pant to exchange for 1 life."
+        text_surf = exchange_font.render(text, True, WHITE)
+        screen.blit(text_surf, (20, 570))
+    
     def draw_background():
         level.draw(screen)
 
@@ -110,6 +122,8 @@ def run():
 
             if correct:
                 finished_tasks += 1  # mark task done
+            else:
+                healthbar.lose_life()
 
             door1.popup.close()
 
@@ -141,6 +155,11 @@ def run():
             QUIT_GAME = False
             return True
         return False
+
+    def exchange_bottles_for_life():
+        while bottleCounter.count >= 3:
+            bottleCounter.count -= 3
+            healthbar.add_life(1)
     
     # health bar
     def draw_health():
@@ -149,6 +168,13 @@ def run():
     # counter for pant
     def draw_bottleCounter():
         bottleCounter.draw(screen)
+
+    # check health to see if u dead or still alive
+    def check_health():
+        if healthbar.amount <= 0:
+            game_over_screen = GameOver(screen)
+            game_over_screen.show()
+            running = False
 
 
     running = True
@@ -164,12 +190,16 @@ def run():
 
         # collect pant
         collect_pant(p1)
+        exchange_bottles_for_life()
 
         # draw level
         draw_background()
         level.draw(screen)
 
         draw_frame()
+
+        draw_task_counter()
+        draw_exchange()
 
         # checking if u reached the goal
         if update_tasks():
@@ -178,6 +208,8 @@ def run():
         # healthbar + bottle counter 
         draw_health()
         draw_bottleCounter()
+
+        check_health()
 
         # whiteboard - should be on top of everything else
         draw_whiteboard()

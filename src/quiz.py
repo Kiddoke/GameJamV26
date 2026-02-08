@@ -47,7 +47,7 @@ def run_quiz(screen, board_rect):
         # draw overlay on whiteboard
         # question
         q_surf = font.render(QUESTION, True, BLACK)
-        screen.blit(q_surf, (board_rect.x + 40, board_rect.y + 60))
+        screen.blit(q_surf, (board_rect.x + 40, board_rect.y + 40))
 
         # answers
         for i, rect in enumerate(answer_rects):
