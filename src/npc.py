@@ -13,7 +13,9 @@ class NPC(pygame.sprite.Sprite):
         self.direction = "left"
         self.image = pygame.transform.scale(sprite, self.size)
         self.rect = self.image.get_rect()
+        self.image_offset = pygame.Vector2(0, 100)
         self.rect.x = 300
-        self.rect.y = 300
+        self.rect.y = 280
+        self.rect.height -= 40
 
 

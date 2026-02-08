@@ -12,6 +12,7 @@ from .hall import BlackBar, Wall
 from .assets import *
 from .bottleCounter import BottleCounter
 from .healthbar import Healthbar
+from .trashcan import Trashcan
 
 
 pygame.init()
@@ -54,6 +55,8 @@ def run():
     npc1 = NPC(OJD_SPRITE_FRONT_LEFT)
     top_bar = BlackBar(0,0, WIDTH, TOP_BAR_HEIGHT)
     bottom_bar = BlackBar(0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
+    level_1_trashcans = level.hall.get_Trashcan()
+    t1, t2 = level_1_trashcans[0], level_1_trashcans[1]
 
     wall_thickness = 1
     left_wall = Wall(0,0, wall_thickness, HEIGHT)
@@ -63,8 +66,8 @@ def run():
     all_other_sprites = pygame.sprite.Group()
     walls = pygame.sprite.Group()
 
-    all_sprites.add(p1, npc1, top_bar, bottom_bar, left_wall, right_wall)
-    all_other_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall)
+    all_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall, t1, p1, t2)
+    all_other_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall, t1, t2)
     walls.add(left_wall, right_wall)
 
     # healthbar + bottle counter
