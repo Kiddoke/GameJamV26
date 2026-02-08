@@ -1,15 +1,17 @@
 import pygame
 
+from .assets import *
+
 class BottleCounter:
-    def __init__(self, bottleImage, canImage):
+    def __init__(self):
         self.count = 0
         self.font = pygame.font.Font(None, 30)
-        self.bottle = bottleImage
-        self.can = canImage
-
         self.x = 710
         self.y = 60
         self.hintCost = 3
+
+        self.bottle = BOTTLE
+        self.can = CAN
 
     def addBottle(self):
         self.count += 1

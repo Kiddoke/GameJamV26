@@ -1,9 +1,11 @@
 import pygame
 
+from .assets import *
+
 class Whiteboard:
 
-    def __init__(self, image):
-        self.image = image
+    def __init__(self):
+        self.image = WHITEBOARD
         self.active = False
         self.rect = self.image.get_rect()
 

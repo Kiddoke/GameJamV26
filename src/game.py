@@ -4,11 +4,11 @@ import time
 import os
 
 from .settings import *
-from .assets import *
 from .Player import Player
 from .npc import NPC
 from .level import create_level_one
 from .bottleCounter import BottleCounter
+from .healthbar import Healthbar
 
 
 pygame.init()
@@ -32,7 +32,10 @@ def run():
     all_sprites.add(p1)
     all_sprites.add(npc1)
     all_other_sprites.add(npc1)
-    bottleCounter = BottleCounter(BOTTLE, CAN)
+
+    # healthbar + bottle counter
+    bottleCounter = BottleCounter()
+    healthbar = Healthbar()
 
 
     def draw_frame():
@@ -60,11 +63,7 @@ def run():
     
     # health bar
     def draw_health():
-        x = 20
-        y = 60
-
-        for i in range(3):
-            screen.blit(FULL_HEART, (x + i * (HEART_SIZE[0] + 5), y))
+        healthbar.draw(screen)
     
     # counter for pant
     def draw_bottleCounter():

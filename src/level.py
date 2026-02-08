@@ -6,9 +6,9 @@ from .hall import Hall
 from .whiteboard import Whiteboard
 
 def create_level_one():
-    popup = Whiteboard(WHITEBOARD)
+    popup = Whiteboard()
 
-    hall = Hall(0, 105, HALLWAY, "1.semester")
+    hall = Hall("1.semester")
 
     # doors
     cr1 = Classroom(500, 185, CLASSROOM_DOOR1, "java", popup)
