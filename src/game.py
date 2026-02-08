@@ -13,6 +13,7 @@ from .healthbar import Healthbar
 from .trashcan import Trashcan
 from .bachelor import EndScreen
 from .quiz import run_quiz
+from .quiz2 import run_quiz2
 from .gameover import GameOver
 
 
@@ -166,6 +167,19 @@ def run():
         door3 = level.hall.doors[2]
         door3.update(p1.rect)
         door3.interact(keys)
+
+        # quiz2
+        if door3.popup.active and keys[pygame.K_e]:
+            correct = run_quiz2(screen, door3.popup.rect)
+
+            if correct:
+                finished_tasks = min(
+                    finished_tasks + 1, TOTAL_TASKS
+                )  # mark task done           
+            else:
+                healthbar.lose_life()
+
+            door3.popup.close()
 
     # close popup if "ESC" pressed
     def close_popup():
