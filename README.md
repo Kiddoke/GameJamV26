@@ -13,4 +13,8 @@ Gruppemedlemmer:
 
 ## Controls
 
+Bevegelse - WASD
+
+Interaksjon - E
+
 ## Beskrivelse av spillet
