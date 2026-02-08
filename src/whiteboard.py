@@ -36,6 +36,9 @@ class Whiteboard:
             text_rect = text_surf.get_rect(center=(self.rect.centerx, self.rect.top - 15))
 
             screen.blit(text_surf, text_rect.topleft)
+    
+    def update(self, events):
+        pass
         
 
 # Brukt AI for å implementere/fikse opp i logikk som allerede var i gameoflife mappen :)

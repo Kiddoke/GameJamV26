@@ -224,6 +224,8 @@ def run():
         update_doors()
         close_popup()
         
+        level.hall.update(events)
+        
         pygame.display.flip()
     
     # end scene
