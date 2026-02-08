@@ -1,5 +1,8 @@
 import pygame
 
+# pixel font
+PIXELFONT = "./assets/sprites/ByteBounce.ttf"
+
 PLAYER_SPRITE_FRONT_RIGHT = pygame.image.load('./assets/sprites/player_sprite_front_right.png')
 PLAYER_SPRITE_FRONT_LEFT = pygame.image.load('./assets/sprites/player_sprite_front_left.png')
 PLAYER_SPRITE_FRONT_DOWN = pygame.image.load('./assets/sprites/player_sprite_front_down.png')
@@ -29,6 +32,12 @@ CAN = pygame.image.load('./assets/sprites/wonster.png')
 TRASHCAN_SIZE = (95, 65)
 TRASHCAN = pygame.image.load('./assets/sprites/trashcan.png')
 
+# diploma + job application
+DIPLOMA_SIZE = (200,200)
+JOBB_SIZE = (200,200)
+DIPLOMA = pygame.image.load('./assets/sprites/diploma.png')
+JOBB = pygame.image.load('./assets/sprites/jobb.png')
+
 # scale
 CLASSROOM_DOOR1 = pygame.transform.scale(CLASSROOM_DOOR1, DOOR_SIZE)
 CLASSROOM_DOOR2 = pygame.transform.scale(CLASSROOM_DOOR2, DOOR_SIZE)
@@ -38,6 +47,8 @@ EMPTY_HEART = pygame.transform.scale(EMPTY_HEART, HEART_SIZE)
 BOTTLE = pygame.transform.scale(BOTTLE, PANT_SIZE)
 CAN = pygame.transform.scale(CAN, PANT_SIZE)
 TRASHCAN = pygame.transform.scale(TRASHCAN, TRASHCAN_SIZE)
+DIPLOMA = pygame.transform.scale(DIPLOMA, DIPLOMA_SIZE)
+JOBB = pygame.transform.scale(JOBB, JOBB_SIZE)
 
 
 
