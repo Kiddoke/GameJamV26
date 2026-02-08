@@ -12,6 +12,8 @@ LT_SPRITE_GIF = pygame.image.load('./assets/sprites/game_charac_right_1.gif')
 SOFA = pygame.image.load('./assets/sprites/sofa.png')
 LARS_TVEITA_1 = pygame.image.load('./assets/sprites/LARS_TVEITA_1.png')
 LARS_TVEITA_2 = pygame.image.load('./assets/sprites/LARS_TVEITA_2.png')
+ARROW_RIGHT = pygame.image.load('./assets/sprites/arrow_right.png')
+
 # level
 DOOR_SIZE = (70, 98)
 CLASSROOM_DOOR1 = pygame.image.load("./assets/sprites/door1.png")

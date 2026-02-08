@@ -69,7 +69,7 @@ def run():
     level = create_level_one()
 
     # task counter
-    finished_tasks = 2
+    finished_tasks = 0
     TOTAL_TASKS = 3
 
     # objects
@@ -80,6 +80,7 @@ def run():
     level_1_trashcans = level.hall.get_Trashcan()
     t1, t2 = level_1_trashcans[0], level_1_trashcans[1]
     sofa = Trashcan(180, 435, SOFA, size=(120, 60))
+    arrow = Trashcan(650, 325, ARROW_RIGHT, size=(120,60))
 
     wall_thickness = 1
     left_wall = Wall(0, 0, wall_thickness, HEIGHT)
@@ -88,12 +89,14 @@ def run():
     all_sprites = pygame.sprite.Group()
     all_other_sprites = pygame.sprite.Group()
     walls = pygame.sprite.Group()
+    win_arrow = pygame.sprite.Group()
 
     all_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall, t1, p1, t2, sofa)
     all_other_sprites.add(
         npc1, top_bar, bottom_bar, left_wall, right_wall, t1, t2, sofa
     )
     walls.add(left_wall, right_wall)
+    win_arrow.add(arrow)
 
     # healthbar + bottle counter
     bottleCounter = BottleCounter()
@@ -217,6 +220,8 @@ def run():
         level.draw(screen)
 
         draw_frame()
+        if finished_tasks == TOTAL_TASKS:
+            win_arrow.draw(screen)
 
         draw_task_counter()
         draw_exchange()
