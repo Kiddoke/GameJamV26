@@ -155,7 +155,7 @@ def run():
             if correct:
                 finished_tasks = min(
                     finished_tasks + 1, TOTAL_TASKS
-                )  # mark task done            else:
+                )  # mark task done           
             else:
                 healthbar.lose_life()
 
