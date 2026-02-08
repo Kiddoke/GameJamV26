@@ -1,8 +1,12 @@
 import pygame
 
 
-
 WIDTH, HEIGHT = 800, 600
+
+OPTIONS = {
+    "resolution" : (WIDTH, HEIGHT)
+}
+
 FRAMERATE = 60
 
 

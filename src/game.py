@@ -1,4 +1,5 @@
 import pygame
+import pygame_menu
 import sys
 import time
 import os
@@ -12,14 +13,36 @@ from .assets import *
 
 pygame.init()
 vel = 3.5
+screen = pygame.display.set_mode((WIDTH, HEIGHT)) # needed here by assets.py What is this??
+
+def main():
+
+    
+    pygame.display.set_caption("IFI SPILL")
+
+    menu = create_menu(screen)
+
+    title_screen = True
+    while title_screen:
+        menu.mainloop(screen)
+
+def create_menu(screen):
+    menu = pygame_menu.Menu('IFI SPILL', WIDTH, HEIGHT, theme=pygame_menu.themes.THEME_BLUE)
+
+    menu.add.button('Start', start_game)
+    menu.add.button('Quit', pygame_menu.events.EXIT)
+
+    return menu
+
+
+def start_game():
+    run()
 
 
 def run():
-    pygame.display.set_caption("IFI SPILL")
-    screen = pygame.display.set_mode((WIDTH, HEIGHT)) # needed here by assets.py What is this??
 
+    
     clock = pygame.time.Clock()
-
     # background + doors
     hall = create_level_one()
 

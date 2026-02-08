@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.image = self.sprites[self.direction]
         self.rect = self.sprites[self.direction].get_rect()
         self.rect.x = 50
-        self.rect.y = 50
+        self.rect.y = 300
 
 
     def update(self, keys, vel, colliders):
