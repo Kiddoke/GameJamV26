@@ -1,8 +1,6 @@
 import pygame
 import pygame_menu
 import sys
-import time
-import os
 
 from .settings import *
 from .Player import Player
