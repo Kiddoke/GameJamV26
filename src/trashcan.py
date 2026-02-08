@@ -8,14 +8,5 @@ class Trashcan:
         self.x = x
         self.y = y
 
-        self.bottles = []
-    
-    def addBottle(self, bottle):
-        self.bottles.append(bottle)
-
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
-
-        # tegne pant
-        for bottle in self.bottles:
-            bottle.draw(screen)

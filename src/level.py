@@ -21,6 +21,13 @@ def create_level_one():
     t = Trashcan(360, 220)
     t2 = Trashcan(600, 430)
 
+    hall.add_door(cr1)
+    hall.add_door(cr2)
+    hall.add_door(cr3)
+
+    hall.add_trashcan(t)
+    hall.add_trashcan(t2)
+
     # pant
     pant_y = 187
     b = Pant(375, pant_y, BOTTLE)
@@ -32,25 +39,20 @@ def create_level_one():
     b4 = Pant(640, pant_y2, BOTTLE)
     c2 = Pant(665, pant_y2, CAN)
 
-    t.addBottle(b)
-    t.addBottle(b2)
-    t.addBottle(c)
+    bottles = [b, b2, b3, b4, c, c2]
 
-    t2.addBottle(b3)
-    t2.addBottle(b4)
-    t2.addBottle(c2)
+    return Level(hall, bottles)
 
-    hall.add_door(cr1)
-    hall.add_door(cr2)
-    hall.add_door(cr3)
+class Level:
+    def __init__(self, hall, bottles):
+        self.hall = hall
+        self.bottles = bottles
 
-    hall.add_trashcan(t)
-    hall.add_trashcan(t2)
+    def draw(self, screen):
+        self.hall.draw(screen)
 
-    return hall
-
-
-
+        for pant in self.bottles:
+            pant.draw(screen)
 
 
 

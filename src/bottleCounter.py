@@ -13,7 +13,7 @@ class BottleCounter:
         self.bottle = BOTTLE
         self.can = CAN
 
-    def addBottle(self):
+    def add(self):
         self.count += 1
 
     def useHint(self):
