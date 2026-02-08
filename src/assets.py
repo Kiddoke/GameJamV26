@@ -11,6 +11,28 @@ CLASSROOM_DOOR1 = pygame.image.load('./assets/sprites/door1.png')
 CLASSROOM_DOOR2 = pygame.image.load('./assets/sprites/door2.png')
 HALLWAY = pygame.image.load('./assets/sprites/HALLWAY_VERSION2.png')
 
+# whiteboard
+WHITEBOARD = pygame.image.load('./assets/sprites/whiteboard.png')
+
+# healthbar
+HEART_SIZE = (30, 30)
+FULL_HEART = pygame.image.load('./assets/sprites/full_heart.png')
+EMPTY_HEART = pygame.image.load('./assets/sprites/empty_heart.png')
+
+# bottle counter
+PANT_SIZE = (20, 40)
+BOTTLE = pygame.image.load('./assets/sprites/pant.png')
+CAN = pygame.image.load('./assets/sprites/wonster.png')
+
 # scale
 CLASSROOM_DOOR1 = pygame.transform.scale(CLASSROOM_DOOR1, DOOR_SIZE)
 CLASSROOM_DOOR2 = pygame.transform.scale(CLASSROOM_DOOR2, DOOR_SIZE)
+WHITEBOARD = pygame.transform.scale(WHITEBOARD, (510, 300))
+FULL_HEART = pygame.transform.scale(FULL_HEART, HEART_SIZE)
+EMPTY_HEART = pygame.transform.scale(EMPTY_HEART, HEART_SIZE)
+BOTTLE = pygame.transform.scale(BOTTLE, PANT_SIZE)
+CAN = pygame.transform.scale(CAN, PANT_SIZE)
+
+
+
+

@@ -10,6 +10,8 @@ from .npc import NPC
 from .level import create_level_one
 from .hall import BlackBar, Wall
 from .assets import *
+from .bottleCounter import BottleCounter
+from .healthbar import Healthbar
 
 
 pygame.init()
@@ -65,13 +67,41 @@ def run():
     all_other_sprites.add(npc1, top_bar, bottom_bar, left_wall, right_wall)
     walls.add(left_wall, right_wall)
 
+    # healthbar + bottle counter
+    bottleCounter = BottleCounter()
+    healthbar = Healthbar()
 
 
     def draw_frame():
         #screen.fill(WHITE)
         pygame.draw.rect(screen, WHITE, (0, 690, WIDTH, 30))
         all_sprites.draw(screen)
+    
+    def draw_background():
+        hall.draw(screen)
 
+        for door in hall.doors:
+            door.draw(screen)
+
+    # update door interaction
+    def update_doors():
+        for door in hall.doors:
+            door.update(p1.rect)
+            door.interact(keys)
+
+    # close popup if "ESC" pressed
+    def close_popup():
+        for door in hall.doors:
+            if door.popup.active and keys[pygame.K_ESCAPE]:
+                door.popup.close()
+    
+    # health bar
+    def draw_health():
+        healthbar.draw(screen)
+    
+    # counter for pant
+    def draw_bottleCounter():
+        bottleCounter.draw(screen)
 
 
     running = True
@@ -85,8 +115,18 @@ def run():
         keys = pygame.key.get_pressed()
         p1.update(keys, vel, all_other_sprites)
 
+        # whiteboard popup
+        update_doors()
+        close_popup()
+
+        # draw hall 
+        draw_background()
 
         hall.draw(screen)
+
+        # healthbar + bottle counter
+        draw_health()
+        draw_bottleCounter()
 
         draw_frame()
         pygame.display.flip()
