@@ -9,7 +9,7 @@ PLAYER_SPRITE_BACK_UP = pygame.image.load('./assets/sprites/player_sprite_back_u
 DOOR_SIZE = (70,98)
 CLASSROOM_DOOR1 = pygame.image.load('./assets/sprites/door1.png')
 CLASSROOM_DOOR2 = pygame.image.load('./assets/sprites/door2.png')
-HALLWAY = pygame.image.load('./assets/sprites/HALLWAY.png')
+HALLWAY = pygame.image.load('./assets/sprites/HALLWAY_VERSION2.png')
 
 # scale
 CLASSROOM_DOOR1 = pygame.transform.scale(CLASSROOM_DOOR1, DOOR_SIZE)
