@@ -59,5 +59,6 @@ class Player(pygame.sprite.Sprite):
 
 
         self.image = self.sprites[self.direction]
+        print(self.rect)
 
 
