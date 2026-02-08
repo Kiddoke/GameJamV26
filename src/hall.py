@@ -34,6 +34,10 @@ class Hall:
         # tegne trashcans
         # for trashcan in self.trashcans:
         #     trashcan.draw(screen)
+    
+    def update(self, events):
+        for door in self.doors:
+            door.update_whiteboard(events)
         
 class BlackBar(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, offset=0):
