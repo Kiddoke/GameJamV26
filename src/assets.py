@@ -15,33 +15,36 @@ LARS_TVEITA_2 = pygame.image.load('./assets/sprites/LARS_TVEITA_2.png')
 ARROW_RIGHT = pygame.image.load('./assets/sprites/arrow_right.png')
 
 # level
-DOOR_SIZE = (70,98)
-CLASSROOM_DOOR1 = pygame.image.load('./assets/sprites/door1.png')
-CLASSROOM_DOOR2 = pygame.image.load('./assets/sprites/door2.png')
-HALLWAY = pygame.image.load('./assets/sprites/HALLWAY_VERSION2.png')
+DOOR_SIZE = (70, 98)
+CLASSROOM_DOOR1 = pygame.image.load("./assets/sprites/door1.png")
+CLASSROOM_DOOR2 = pygame.image.load("./assets/sprites/door2.png")
+HALLWAY = pygame.image.load("./assets/sprites/HALLWAY_VERSION2.png")
 
 # whiteboard
-WHITEBOARD = pygame.image.load('./assets/sprites/whiteboard.png')
+WHITEBOARD = pygame.image.load("./assets/sprites/whiteboard.png")
+
+# ifi - change picture later
+IFI = pygame.image.load("./assets/sprites/ifi_pixel.png")
 
 # healthbar
 HEART_SIZE = (30, 30)
-FULL_HEART = pygame.image.load('./assets/sprites/full_heart.png')
-EMPTY_HEART = pygame.image.load('./assets/sprites/empty_heart.png')
+FULL_HEART = pygame.image.load("./assets/sprites/full_heart.png")
+EMPTY_HEART = pygame.image.load("./assets/sprites/empty_heart.png")
 
 # bottle counter
 PANT_SIZE = (20, 40)
-BOTTLE = pygame.image.load('./assets/sprites/pant.png')
-CAN = pygame.image.load('./assets/sprites/wonster.png')
+BOTTLE = pygame.image.load("./assets/sprites/pant.png")
+CAN = pygame.image.load("./assets/sprites/wonster.png")
 
 # trashcan
 TRASHCAN_SIZE = (95, 65)
-TRASHCAN = pygame.image.load('./assets/sprites/trashcan.png')
+TRASHCAN = pygame.image.load("./assets/sprites/trashcan.png")
 
 # diploma + job application
-DIPLOMA_SIZE = (200,200)
-JOBB_SIZE = (200,200)
-DIPLOMA = pygame.image.load('./assets/sprites/diploma.png')
-JOBB = pygame.image.load('./assets/sprites/jobb.png')
+DIPLOMA_SIZE = (200, 200)
+JOBB_SIZE = (200, 200)
+DIPLOMA = pygame.image.load("./assets/sprites/diploma.png")
+JOBB = pygame.image.load("./assets/sprites/jobb.png")
 
 # scale
 CLASSROOM_DOOR1 = pygame.transform.scale(CLASSROOM_DOOR1, DOOR_SIZE)
@@ -54,7 +57,3 @@ CAN = pygame.transform.scale(CAN, PANT_SIZE)
 TRASHCAN = pygame.transform.scale(TRASHCAN, TRASHCAN_SIZE)
 DIPLOMA = pygame.transform.scale(DIPLOMA, DIPLOMA_SIZE)
 JOBB = pygame.transform.scale(JOBB, JOBB_SIZE)
-
-
-
-
